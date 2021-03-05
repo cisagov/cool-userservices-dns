@@ -4,9 +4,9 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
-variable "subnet_id" {
+variable "domainmanager_subdomain" {
   type        = string
-  description = "The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0)"
+  description = "The subdomain for Domain Manager (e.g. \"domain-manager.cool\")."
 }
 
 # ------------------------------------------------------------------------------
@@ -14,22 +14,35 @@ variable "subnet_id" {
 #
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------
-variable "ami_owner_account_id" {
+
+variable "assume_read_terraform_state_policy_description" {
   type        = string
-  description = "The ID of the AWS account that owns the Example AMI, or \"self\" if the AMI is owned by the same account as the provisioner."
-  default     = "self"
+  description = "The description to associate with the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns."
+  default     = "Allow assumption of the ReadUserServicesDNSTerraformState role in the Terraform account."
 }
 
-variable "aws_availability_zone" {
+variable "assume_read_terraform_state_policy_name" {
   type        = string
-  description = "The AWS availability zone to deploy into (e.g. a, b, c, etc.)"
-  default     = "a"
+  description = "The name to assign the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns."
+  default     = "AssumeReadUserServicesDNSTerraformState"
 }
 
 variable "aws_region" {
   type        = string
   description = "The AWS region to deploy into (e.g. us-east-1)"
   default     = "us-east-1"
+}
+
+variable "read_terraform_state_role_description" {
+  type        = string
+  description = "The description to associate with the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored."
+  default     = "Allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored."
+}
+
+variable "read_terraform_state_role_name" {
+  type        = string
+  description = "The name to assign the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored."
+  default     = "ReadUserServicesDNSTerraformState"
 }
 
 variable "tags" {
