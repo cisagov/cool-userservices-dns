@@ -20,8 +20,6 @@ locals {
   # as assume role session names.
   caller_user_name = split("/", data.aws_caller_identity.current.arn)[1]
 
-  domainmanager_domain = "${var.domainmanager_subdomain}.${data.terraform_remote_state.dns_cyber_dhs_gov.outputs.cyber_dhs_gov_zone.name}"
-
   # Find the Users account by name and email.
   users_account_id = [
     for x in data.aws_organizations_organization.cool.accounts :

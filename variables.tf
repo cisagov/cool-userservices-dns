@@ -4,11 +4,6 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
-variable "domainmanager_subdomain" {
-  type        = string
-  description = "The subdomain for Domain Manager (e.g. \"domain-manager.cool\")."
-}
-
 # ------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 #

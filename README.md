@@ -54,11 +54,9 @@ services in the COOL User Services account.
 | Name | Version |
 |------|---------|
 | aws | ~> 3.0 |
-| aws.dns_cyber_dhs_gov | ~> 3.0 |
 | aws.organizationsreadonly | ~> 3.0 |
 | aws.terraform | ~> 3.0 |
 | aws.users | ~> 3.0 |
-| aws.userservices_domainmanager | ~> 3.0 |
 | terraform | n/a |
 
 ## Inputs ##
@@ -68,7 +66,6 @@ services in the COOL User Services account.
 | assume_read_terraform_state_policy_description | The description to associate with the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns. | `string` | `Allow assumption of the ReadUserServicesDNSTerraformState role in the Terraform account.` | no |
 | assume_read_terraform_state_policy_name | The name to assign the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns. | `string` | `AssumeReadUserServicesDNSTerraformState` | no |
 | aws_region | The AWS region to deploy into (e.g. us-east-1) | `string` | `us-east-1` | no |
-| domainmanager_subdomain | The subdomain for Domain Manager (e.g. "domain-manager.cool"). | `string` | n/a | yes |
 | read_terraform_state_role_description | The description to associate with the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `Allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored.` | no |
 | read_terraform_state_role_name | The name to assign the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `ReadUserServicesDNSTerraformState` | no |
 | tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
@@ -78,7 +75,6 @@ services in the COOL User Services account.
 | Name | Description |
 |------|-------------|
 | assume_read_terraform_state_role_policy | The policy that allows assumption of the role that allows read-only access to the cool-userservices-dns state in the Terraform state bucket. |
-| domainmanager_certificate | The ACM certificate for Domain Manager. |
 | read_terraform_state_role | The role that allows read-only access to the cool-userservices-dns state in the Terraform state bucket. |
 
 ## Notes ##
