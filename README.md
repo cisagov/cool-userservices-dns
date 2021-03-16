@@ -23,10 +23,6 @@ services in the COOL User Services account.
     [`cisagov/cool-accounts-userservices`](https://github.com/cisagov/cool-accounts-userservices)
   - Users:
     [`cisagov/cool-accounts/users`](https://github.com/cisagov/cool-accounts/users)
-- Terraform in [`cisagov/cool-dns-cyber.dhs.gov`](https://github.com/cisagov/cool-dns-cyber.dhs.gov)
-  must have been applied.
-- Terraform in [`cisagov/cool-userservices-networking`](https://github.com/cisagov/cool-userservices-networking)
-  must have been applied.
 
 ## Usage ##
 
