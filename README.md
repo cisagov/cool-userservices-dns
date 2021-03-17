@@ -2,38 +2,41 @@
 
 [![GitHub Build Status](https://github.com/cisagov/cool-userservices-dns/workflows/build/badge.svg)](https://github.com/cisagov/cool-userservices-dns/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) [Terraform
-module](https://www.terraform.io/docs/modules/index.html) GitHub
-repository started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
+This is a Terraform deployment to create DNS-related resources needed for
+services in the COOL User Services account.
 
-See [here](https://www.terraform.io/docs/modules/index.html) for more
-details on Terraform modules and the standard module structure.
+## Pre-requisites ##
+
+- [Terraform](https://www.terraform.io/) installed on your system.
+- An accessible AWS S3 bucket to store Terraform state
+  (specified in [backend.tf](backend.tf)).
+- An accessible AWS DynamoDB database to store the Terraform state lock
+  (specified in [backend.tf](backend.tf)).
+- Access to all of the Terraform remote states specified in
+  [remote_states.tf](remote_states.tf).
+- The following COOL accounts and roles must have been created:
+  - Master:
+    [`cisagov/cool-accounts/master`](https://github.com/cisagov/cool-accounts/master)
+  - Terraform:
+    [`cisagov/cool-accounts/terraform`](https://github.com/cisagov/cool-accounts/terraform)
+  - User Services:
+    [`cisagov/cool-accounts-userservices`](https://github.com/cisagov/cool-accounts-userservices)
+  - Users:
+    [`cisagov/cool-accounts/users`](https://github.com/cisagov/cool-accounts/users)
 
 ## Usage ##
 
-```hcl
-module "example" {
-  source = "github.com/cisagov/cool-userservices-dns"
+1. Create a Terraform workspace (if you haven't already done so) by running
+   `terraform workspace new <workspace_name>`
+1. Create a `<workspace_name>.tfvars` file with all of the required
+  variables (see [Inputs](#Inputs) below for details):
 
-  aws_region            = "us-west-1"
-  aws_availability_zone = "b"
-  subnet_id             = "subnet-0123456789abcdef0"
+  ```hcl
+  domainmanager_subdomain = "domain-manager.cool"
+  ```
 
-  tags = {
-    Key1 = "Value1"
-    Key2 = "Value2"
-  }
-}
-```
-
-## Examples ##
-
-* [Deploying into the default VPC](https://github.com/cisagov/cool-userservices-dns/tree/develop/examples/default_vpc)
+1. Run the command `terraform init`.
+1. Run the command `terraform apply -var-file=<workspace_name>.tfvars`.
 
 ## Requirements ##
 
@@ -47,39 +50,33 @@ module "example" {
 | Name | Version |
 |------|---------|
 | aws | ~> 3.0 |
+| aws.organizationsreadonly | ~> 3.0 |
+| aws.terraform | ~> 3.0 |
+| aws.users | ~> 3.0 |
+| terraform | n/a |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ami_owner_account_id | The ID of the AWS account that owns the Example AMI, or "self" if the AMI is owned by the same account as the provisioner. | `string` | `self` | no |
-| aws_availability_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.) | `string` | `a` | no |
+| assume_read_terraform_state_policy_description | The description to associate with the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns. | `string` | `Allow assumption of the ReadUserServicesDNSTerraformState role in the Terraform account.` | no |
+| assume_read_terraform_state_policy_name | The name to assign the IAM policy that allows assumption of the role that allows read-only access to Terraform state for cool-userservices-dns. | `string` | `AssumeReadUserServicesDNSTerraformState` | no |
 | aws_region | The AWS region to deploy into (e.g. us-east-1) | `string` | `us-east-1` | no |
-| subnet_id | The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0) | `string` | n/a | yes |
+| read_terraform_state_role_description | The description to associate with the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `Allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored.` | no |
+| read_terraform_state_role_name | The name to assign the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `ReadUserServicesDNSTerraformState` | no |
 | tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| arn | The EC2 instance ARN |
-| availability_zone | The AZ where the EC2 instance is deployed |
-| id | The EC2 instance ID |
-| private_ip | The private IP of the EC2 instance |
-| subnet_id | The ID of the subnet where the EC2 instance is deployed |
+| assume_read_terraform_state_role_policy | The policy that allows assumption of the role that allows read-only access to the cool-userservices-dns state in the Terraform state bucket. |
+| read_terraform_state_role | The role that allows read-only access to the cool-userservices-dns state in the Terraform state bucket. |
 
 ## Notes ##
 
 Running `pre-commit` requires running `terraform init` in every directory that
-contains Terraform code. In this repository, these are the main directory and
-every directory under `examples/`.
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
+contains Terraform code. In this repository, this is just the main directory.
 
 ## Contributing ##
 
