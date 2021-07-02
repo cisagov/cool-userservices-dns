@@ -74,9 +74,9 @@ services in the COOL User Services account.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_region | The AWS region to deploy into (e.g. us-east-1) | `string` | `"us-east-1"` | no |
+| aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
 | read\_terraform\_state\_role\_name | The name to assign the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `"ReadUserServicesDNSTerraformState"` | no |
-| tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
+| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 
 ## Outputs ##
 
