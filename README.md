@@ -35,8 +35,14 @@ services in the COOL User Services account.
   domainmanager_subdomain = "domain-manager.cool"
   ```
 
+<<<<<<< HEAD
 1. Run the command `terraform init`.
 1. Run the command `terraform apply -var-file=<workspace_name>.tfvars`.
+=======
+## Examples ##
+
+- [Deploying into the default VPC](https://github.com/cisagov/skeleton-tf-module/tree/develop/examples/default_vpc)
+>>>>>>> 97571fd1ae0099a7f69220550741b534d7b287c5
 
 ## Requirements ##
 
