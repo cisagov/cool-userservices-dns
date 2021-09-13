@@ -42,7 +42,7 @@ services in the COOL User Services account.
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.12.0 |
+| terraform | ~> 0.13.0 |
 | aws | ~> 3.38 |
 
 ## Providers ##
@@ -57,7 +57,7 @@ services in the COOL User Services account.
 
 | Name | Source | Version |
 |------|--------|---------|
-| read\_terraform\_state | github.com/cisagov/terraform-state-read-role-tf-module |  |
+| read\_terraform\_state | github.com/cisagov/terraform-state-read-role-tf-module | n/a |
 
 ## Resources ##
 
