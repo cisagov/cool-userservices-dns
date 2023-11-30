@@ -38,19 +38,20 @@ services in the COOL User Services account.
 1. Run the command `terraform init`.
 1. Run the command `terraform apply -var-file=<workspace_name>.tfvars`.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.0 |
-| aws | ~> 3.38 |
+| aws | ~> 4.9 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.38 |
-| aws.organizationsreadonly | ~> 3.38 |
+| aws | ~> 4.9 |
+| aws.organizationsreadonly | ~> 4.9 |
 | terraform | n/a |
 
 ## Modules ##
@@ -83,6 +84,7 @@ services in the COOL User Services account.
 | Name | Description |
 |------|-------------|
 | read\_terraform\_state | The IAM policies and role that allow read-only access to the cool-userservices-dns state in the Terraform state bucket. |
+<!-- END_TF_DOCS -->
 
 ## Notes ##
 
