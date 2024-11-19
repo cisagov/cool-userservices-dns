@@ -43,7 +43,7 @@ services in the COOL User Services account.
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 1.0 |
+| terraform | ~> 1.1 |
 | aws | ~> 4.9 |
 
 ## Providers ##
