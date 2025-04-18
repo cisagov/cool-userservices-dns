@@ -32,7 +32,7 @@ services in the COOL User Services account.
   variables (see [Inputs](#inputs) below for details):
 
   ```hcl
-  domainmanager_subdomain = "domain-manager.cool"
+  terraform_state_bucket = "my-terraform-state-bucket"
   ```
 
 1. Run the command `terraform init`.
@@ -78,6 +78,7 @@ services in the COOL User Services account.
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
 | read\_terraform\_state\_role\_name | The name to assign the IAM role (as well as the corresponding policy) that allows read-only access to the cool-userservices-dns state in the S3 bucket where Terraform state is stored. | `string` | `"ReadUserServicesDNSTerraformState"` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
+| terraform\_state\_bucket | The name of the S3 bucket where Terraform state is stored. | `string` | n/a | yes |
 
 ## Outputs ##
 
