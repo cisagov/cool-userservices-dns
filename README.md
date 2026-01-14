@@ -1,6 +1,8 @@
 # cool-userservices-dns #
 
 [![GitHub Build Status](https://github.com/cisagov/cool-userservices-dns/workflows/build/badge.svg)](https://github.com/cisagov/cool-userservices-dns/actions)
+[![License](https://img.shields.io/github/license/cisagov/cool-userservices-dns)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/cool-userservices-dns/workflows/CodeQL/badge.svg)](https://github.com/cisagov/cool-userservices-dns/actions/workflows/codeql-analysis.yml)
 
 This is a Terraform deployment to create DNS-related resources needed for
 services in the COOL User Services account.
